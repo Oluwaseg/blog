@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      integrity="sha384-dH6pQkt4U5viJ5RZkiI8ekdCjEGFbRRlOGYcPWy6Wf3XxmU2z2uZLDTQbr3PnYU"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      integrity="sha384-ojO9MR1st4yJfSBxkTKbPIt/L7O2EN/4K1Rl5r+8YEEudde9S6tJ1gdwQ9UmbeE1"
+      crossorigin="anonymous"
+    />
+    <title>Blog List</title>
+  </head>
+
+  <body class="bg-gray-100">
+    <div class="container mx-auto mt-8">
+      <h2 class="text-2xl font-bold mb-4">Blog List</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <% blogs.forEach(blog => { %>
+        <div class="bg-white p-4 rounded shadow">
+          <h3 class="text-lg font-semibold mb-2"><%= blog.title %></h3>
+          <p class="text-gray-600"><%= blog.description %></p>
+          <a href="/blogs/<%= blog._id %>" class="mt-2 block text-blue-500"
+            >Read more</a
+          >
+        </div>
+        <% }); %>
+      </div>
+    </div>
+  </body>
+</html>
