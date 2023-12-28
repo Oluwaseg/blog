@@ -1,35 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Your Blog</title>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      integrity="sha384-dH6pQkt4U5viJ5RZkiI8ekdCjEGFbRRlOGYcPWy6Wf3XxmU2z2uZLDTQbr3PnYU"
-      crossorigin="anonymous"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      integrity="sha384-ojO9MR1st4yJfSBxkTKbPIt/L7O2EN/4K1Rl5r+8YEEudde9S6tJ1gdwQ9UmbeE1"
-      crossorigin="anonymous"
-    />
-    <title>Blog List</title>
   </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Your Blog</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-  <body class="bg-gray-100">
-    <div class="container mx-auto mt-8">
-      <h2 class="text-2xl font-bold mb-4">Blog List</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <% blogs.forEach(blog => { %>
-        <div class="bg-white p-4 rounded shadow">
-          <h3 class="text-lg font-semibold mb-2"><%= blog.title %></h3>
-          <p class="text-gray-600"><%= blog.description %></p>
-          <a href="/blogs/<%= blog._id %>" class="mt-2 block text-blue-500"
-            >Read more</a
-          >
+    <div class="container mt-5">
+      <div class="row">
+        <!-- Blog Cards -->
+        <% blogs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        %> <% blogs.forEach(blog => { %>
+        <div class="col-md-6 mb-4">
+          <div class="card">
+            <img
+              src="https://via.placeholder.com/800x400"
+              class="card-img-top"
+              alt="Blog Image"
+            />
+            <div class="card-body">
+              <h5 class="card-title"><%= blog.title %></h5>
+              <p class="card-text"><%= blog.description %></p>
+              <a href="/blogs/<%= blog._id %>" class="btn btn-primary"
+                >Read more</a
+              >
+            </div>
+          </div>
         </div>
         <% }); %>
       </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+      <p>&copy; 2023 Your Blog. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>
 </html>

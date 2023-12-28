@@ -42,7 +42,6 @@ const verifyToken = (req, res, next) => {
   const token = req.cookies.jwt;
 
   if (!token) {
-    console.log("No token found.");
     return next();
   }
 
@@ -51,9 +50,6 @@ const verifyToken = (req, res, next) => {
       console.error("JWT verification failed:", err);
       return next();
     }
-
-    console.log("Decoded Token:", decodedToken);
-
     req.user = decodedToken;
     next();
   });
@@ -68,13 +64,10 @@ const authMiddleware = async (req, res, next) => {
     }
 
     const decoded = jwt.verify(token, secretKey);
-    console.log("Decoded Token:", decoded);
 
     const user = await userModel.findById(decoded.userId);
-    console.log("User from Database:", user);
 
     if (!user || !user.tokens.includes(token)) {
-      console.error("User not authenticated or token blacklisted.");
       return res.redirect("/auth/login");
     }
 

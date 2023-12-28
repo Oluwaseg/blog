@@ -2,14 +2,8 @@ const authController = require("../controllers/authController");
 const express = require("express");
 const router = express.Router();
 
-// Apply global token verification middleware
 router.use(authController.verifyToken);
 
-// Apply middleware for specific routes
-router.use("/home", authController.authMiddleware);
-router.use(authController.checkTokenBlacklist);
-
-// Define login and registration routes
 router.post("/login", authController.loginUser);
 router.post(
   "/register",
@@ -17,7 +11,9 @@ router.post(
   authController.registerUser
 );
 
-// Define home route
+router.use(authController.checkTokenBlacklist);
+router.use("/home", authController.authMiddleware);
+
 router.get("/home", (req, res) => {
   res.render("home/home.ejs", {
     username: req.user.username,
@@ -26,7 +22,6 @@ router.get("/home", (req, res) => {
   });
 });
 
-// Define registration and login routes
 router.get("/register", (req, res) => {
   if (req.user) {
     return res.redirect("/auth/home");
@@ -41,7 +36,6 @@ router.get("/login", (req, res) => {
   res.render("auth/login.ejs");
 });
 
-// Define logout route
 router.get("/logout", authController.logoutUser);
 
 module.exports = router;
