@@ -44,6 +44,10 @@
       </div>
     </nav>
 
+    <div class="text-center mt-4">
+      <a href="/blogs/create" class="btn btn-success">Create New Blog</a>
+    </div>
+
     <div class="container mt-5">
       <div class="row">
         <!-- Blog Cards -->
@@ -59,7 +63,7 @@
             <div class="card-body">
               <h5 class="card-title"><%= blog.title %></h5>
               <p class="card-text"><%= blog.description %></p>
-              <a href="/blogs/<%= blog._id %>" class="btn btn-primary"
+              <a href="/blogs/<%= blog.slug %>" class="btn btn-primary"
                 >Read more</a
               >
             </div>
@@ -70,7 +74,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3">
+    <footer class="bg-dark text-white text-center py-3 mt-auto">
       <p>&copy; 2023 Your Blog. All rights reserved.</p>
     </footer>
 

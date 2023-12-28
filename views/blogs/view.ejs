@@ -28,6 +28,12 @@
           <h2 class="text-3xl font-semibold mb-4 text-gray-800">
             <%= blog.title %>
           </h2>
+          <a
+            href="/blogs"
+            class="btn btn-primary bg-green-500 hover:bg-blue-700 text-white"
+          >
+            All atricle
+          </a>
           <p class="text-sm text-gray-600">
             Author: <%= blog.author.username %>
           </p>
@@ -43,7 +49,7 @@
           <!-- Edit and Delete Buttons -->
           <div class="flex justify-between mt-4">
             <a
-              href="/blogs/<%= blog._id %>/edit"
+              href="/blogs/<%= blog.slug %>/edit"
               class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white"
             >
               Edit

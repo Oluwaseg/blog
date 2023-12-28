@@ -18,14 +18,14 @@ router.post(
   authController.authMiddleware,
   blogController.createBlog
 );
-router.get("/:id", blogController.getBlogById);
+router.get("/:slug", blogController.getBlogBySlug);
 router.get(
-  "/:id/edit",
+  "/:slug/edit",
   authController.authMiddleware,
   blogController.getBlogForEdit
 );
 router.put(
-  "/:id/edit",
+  "/:slug/edit",
   authController.authMiddleware,
   blogController.updateBlog
 );
